@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab Data Informatika Kelas 7</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+body{font-family:Nunito,sans-serif;background:linear-gradient(135deg,#eef2ff,#ecfeff 50%,#ecfdf5);min-height:100vh}
+.card{background:rgba(255,255,255,.8);backdrop-filter:blur(10px);border:1px solid #fff;border-radius:1.5rem;box-shadow:0 8px 24px rgba(79,70,229,.1);padding:1.25rem}
+.btn{min-height:48px;padding:.6rem 1.1rem;border-radius:1rem;font-weight:800;transition:.15s;touch-action:manipulation}
+.btn:active{transform:scale(.94)}
+.pri{background:#4f46e5;color:#fff}.ok{background:#10b981;color:#fff}.opt{background:#fff;border:2px solid #c7d2fe;width:100%;text-align:left}
+.opt:hover{border-color:#4f46e5;background:#eef2ff}
+.good{background:#d1fae5!important;border-color:#10b981!important}.bad{background:#fee2e2!important;border-color:#ef4444!important;animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.tab{white-space:nowrap;padding:.6rem 1rem;border-radius:999px;font-weight:800;background:#fff;color:#4f46e5;min-height:44px}
+.tab.on{background:#4f46e5;color:#fff}
+input,select,textarea{border:2px solid #c7d2fe;border-radius:.8rem;padding:.55rem;width:100%;font-size:16px}
+.sec{display:none}.sec.on{display:block;animation:fadeInUp .4s}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+td,th{border:1px solid #c7d2fe;padding:.4rem .6rem;text-align:center}th{background:#e0e7ff}
+.prof{position:fixed;left:8px;bottom:8px;z-index:30;width:96px;pointer-events:none}
+#bub{position:absolute;bottom:100%;left:0;width:190px;background:#fff;border:2px solid #4f46e5;border-radius:1rem;padding:.4rem .7rem;font-size:13px;font-weight:700;margin-bottom:2px;box-shadow:0 6px 16px rgba(79,70,229,.2)}
+.prof svg{animation:bob 2s ease-in-out infinite;overflow:visible}
+.prof.happy svg{animation:jump .5s ease 4}.prof.sad svg{animation:shake .4s 3}.prof.think svg{animation:tilt 1.2s ease-in-out infinite}
+.arm{transform-origin:76px 80px;animation:wave 1.2s ease-in-out infinite}.prof.happy .arm{animation-duration:.25s}
+@keyframes bob{50%{transform:translateY(-4px)}}@keyframes jump{40%{transform:translateY(-22px)}}
+@keyframes tilt{50%{transform:rotate(-6deg)}}@keyframes wave{50%{transform:rotate(-25deg)}}
+@media(prefers-reduced-motion:reduce){.prof svg,.arm{animation:none!important}}
+</style></head>
+<body class="text-slate-800">
+<header class="sticky top-0 z-20 bg-white/85 backdrop-blur shadow">
+ <div class="max-w-4xl mx-auto p-3">
+  <div class="flex items-center gap-3 flex-wrap">
+   <div class="w-11 h-11 rounded-2xl bg-indigo-600 text-white grid place-items-center text-xl"><i class="fa-solid fa-table-cells"></i></div>
+   <div class="flex-1 min-w-[160px]"><div class="font-black leading-tight">Informatika Kelas 7 · Pengolahan Data</div><div class="text-xs text-slate-500">Guru: Christopher Michael Lauw, M.Kom · SMPK Tunas Daud Mataram</div></div>
+   <input id="nama" placeholder="Nama siswa" class="!w-40" aria-label="Nama siswa">
+  </div>
+  <div class="flex items-center gap-2 mt-2"><div class="flex-1 h-4 bg-slate-200 rounded-full overflow-hidden"><div id="bar" class="h-full bg-gradient-to-r from-cyan-400 via-emerald-400 to-amber-400 transition-all duration-700" style="width:0"></div></div><b id="pct" class="text-sm w-12 text-right">0%</b></div>
+  <nav class="flex gap-2 overflow-x-auto mt-2 pb-1" id="nav"></nav>
+ </div>
+</header>
+<main class="max-w-4xl mx-auto p-3 pb-16">
+
+<section id="home" class="sec on space-y-4">
+ <div class="card bg-gradient-to-br from-indigo-600 to-cyan-500 !text-white animate__animated animate__fadeIn">
+  <div class="text-5xl animate__animated animate__bounce animate__infinite" style="animation-duration:2.5s">📊</div>
+  <h1 class="text-2xl font-black mt-2">Jadi Detektif Data!</h1>
+  <p class="mt-1 text-indigo-50">Kenali data, olah di lembar kerja, lalu raih sertifikatmu. Selesaikan 17 aktivitas untuk mencapai 100%.</p>
+ </div>
+ <div class="card"><h2 class="font-black text-lg"><i class="fa-solid fa-bullseye text-emerald-500"></i> Tujuan Pembelajaran</h2>
+  <p class="mt-1">Siswa mampu mengolah dan menganalisis sekumpulan data, lalu menyajikannya dalam berbagai representasi (numerik, teks, gambar).</p></div>
+ <div class="card"><h2 class="font-black text-lg"><i class="fa-solid fa-key text-amber-500"></i> Kata Kunci <span class="text-sm font-medium text-slate-500">(ketuk kartunya)</span></h2>
+  <div id="kw" class="flex flex-wrap gap-2 mt-2"></div><p id="kwd" class="mt-3 p-3 rounded-xl bg-amber-50 hidden"></p></div>
+ <div class="card"><h2 class="font-black text-lg">Daftar aktivitas</h2><div id="chk" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2 text-sm"></div></div>
+</section>
+
+<section id="materi" class="sec space-y-3"><div id="mat" class="space-y-3"></div></section>
+
+<section id="lab" class="sec">
+ <div class="card space-y-3"><h2 class="font-black text-lg">🧪 Lab Maya: Simulator Lembar Kerja</h2>
+  <p class="text-sm">Ubah angka di kolom A, pilih fungsi, lalu tekan Hitung.</p>
+  <table class="w-full bg-white rounded-xl"><thead><tr><th></th><th>A</th></tr></thead><tbody id="cells"></tbody></table>
+  <div class="grid grid-cols-2 gap-2"><select id="fn" aria-label="Fungsi"><option>SUM</option><option>AVERAGE</option><option>COUNT</option><option>MIN</option><option>MAX</option><option>IF</option></select>
+   <input id="thr" type="number" value="75" aria-label="Batas IF" title="Batas nilai untuk IF"></div>
+  <button class="btn pri w-full" onclick="runLab()"><i class="fa-solid fa-calculator"></i> Hitung</button>
+  <div id="labout" class="p-3 rounded-xl bg-emerald-50 min-h-[3rem]">Hasil muncul di sini.</div>
+  <div id="chart" class="flex items-end gap-2 h-36 bg-white rounded-xl p-3"></div></div>
+</section>
+
+<section id="game" class="sec space-y-3">
+ <div class="card"><h2 class="font-black text-lg">🎮 Game 10 Level <span id="tot" class="text-sm text-indigo-600"></span></h2>
+  <div id="lv" class="grid grid-cols-5 gap-2 mt-2"></div></div>
+ <div id="play" class="card hidden"></div>
+</section>
+
+<section id="lkpd" class="sec"><div class="card space-y-3">
+ <h2 class="font-black text-lg">📝 LKPD: Kegemaran Siswa Kelas 7A</h2>
+ <table class="w-full bg-white"><tr><th>Kegemaran</th><th>Basket</th><th>Musik</th><th>Gim</th><th>Membaca</th></tr><tr><td>Jumlah siswa</td><td>5</td><td>8</td><td>12</td><td>3</td></tr></table>
+ <label>1. Berapa total siswa (=SUM)?<input id="k1" inputmode="numeric"></label>
+ <label>2. Kegemaran paling banyak?<input id="k2"></label>
+ <label>3. Kegemaran paling sedikit?<input id="k3"></label>
+ <label>4. Rata-rata siswa per kegemaran (=AVERAGE)?<input id="k4" inputmode="numeric"></label>
+ <button class="btn pri w-full" onclick="checkL()">Periksa nilai</button><div id="kout" class="font-bold"></div></div></section>
+
+<section id="ref" class="sec"><div class="card space-y-3">
+ <h2 class="font-black text-lg">💭 Refleksi</h2>
+ <div>Perasaan belajarmu hari ini?</div><div id="emo" class="flex justify-between text-4xl"></div>
+ <label>Seberapa paham materinya?<select id="pah"><option>Sangat paham</option><option>Cukup paham</option><option>Perlu belajar lagi</option></select></label>
+ <label>Apa yang masih sulit?<textarea id="sul" rows="3"></textarea></label>
+ <button class="btn ok w-full" onclick="saveRef()">Kirim refleksi</button></div></section>
+
+<div id="prof" class="prof" aria-live="polite"><div id="bub">Halo!</div>
+<svg viewBox="0 0 100 120" aria-label="Prof. Data">
+<path d="M22 120 Q22 82 50 78 Q78 82 78 120Z" fill="#fff" stroke="#c7d2fe" stroke-width="2"/>
+<path d="M50 80 l-6 12 6 22 6-22z" fill="#4f46e5"/>
+<g class="arm"><path d="M74 88 Q88 78 90 58" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round"/><circle cx="90" cy="55" r="6" fill="#fcd5b0"/></g>
+<circle cx="29" cy="40" r="9" fill="#f1f5f9"/><circle cx="71" cy="40" r="9" fill="#f1f5f9"/><circle cx="50" cy="22" r="14" fill="#f1f5f9"/>
+<circle cx="50" cy="48" r="22" fill="#fcd5b0"/>
+<path d="M30 34 Q50 14 70 34 Q50 26 30 34Z" fill="#f1f5f9"/>
+<circle cx="41" cy="46" r="8" fill="#fff" fill-opacity=".7" stroke="#334155" stroke-width="2"/><circle cx="59" cy="46" r="8" fill="#fff" fill-opacity=".7" stroke="#334155" stroke-width="2"/><path d="M49 46h2" stroke="#334155" stroke-width="2"/>
+<circle cx="41" cy="46" r="2.5" fill="#1e293b"/><circle cx="59" cy="46" r="2.5" fill="#1e293b"/>
+<path id="mth" d="M43 60 Q50 65 57 60" stroke="#9a3412" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg></div>
+<div id="cert" style="position:fixed;left:0;top:0;z-index:-1;width:720px;background:#fff;padding:40px;display:none"></div>
+</main>
+
+<script>
+const $=s=>document.querySelector(s),T=17,done=new Set(),sc={};let fired=false,emo=0;
+const tabs=[['home','Beranda'],['materi','Materi'],['lab','Lab Maya'],['game','Game'],['lkpd','LKPD'],['ref','Refleksi']];
+const names={m1:'Materi: Mengenal Data',m2:'Materi: Lembar Kerja',m3:'Materi: Fungsi Statistik',m4:'Materi: IF & Validasi',lab:'Lab Maya',lkpd:'LKPD',ref:'Refleksi'};
+for(let i=1;i<=10;i++)names['g'+i]='Game Level '+i;
+$('#nav').innerHTML=tabs.map(t=>`<button class="tab ${t[0]=='home'?'on':''}" data-t="${t[0]}">${t[1]}</button>`).join('');
+$('#nav').onclick=e=>{const t=e.target.dataset.t;if(!t)return;document.querySelectorAll('.sec').forEach(s=>s.classList.toggle('on',s.id==t));document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t==t));scrollTo({top:0,behavior:'smooth'});say(tips[t])};
+const conf=(n=120)=>confetti({particleCount:n,spread:80,origin:{y:.6}});
+function mark(k){done.add(k);const p=Math.round(done.size/T*100);$('#bar').style.width=p+'%';$('#pct').textContent=p+'%';drawChk();drawLv();if(p==100&&!fired){fired=true;conf(300);say('Selamat! 100% selesai. Sertifikatmu sedang diunduh!','happy',9000);setTimeout(()=>{conf(200);pdf()},900)}}
+function drawChk(){$('#chk').innerHTML=Object.keys(names).map(k=>`<div class="p-2 rounded-xl ${done.has(k)?'bg-emerald-100':'bg-slate-100'}">${done.has(k)?'✅':'⬜'} ${names[k]}</div>`).join('')}
+const KW={Data:'Kumpulan fakta berupa angka, teks, atau gambar.',Informasi:'Data yang sudah diolah sehingga bermakna.',Worksheet:'Lembar kerja berisi sel, baris, dan kolom.',Statistik:'Cara mengolah data, misalnya jumlah dan rata-rata.','Logical Function':'Fungsi yang memberi hasil berdasarkan syarat, seperti IF.','Data Validation':'Aturan agar isi sel hanya menerima data yang benar.'};
+const col=['indigo','cyan','emerald','amber','indigo','cyan'];
+$('#kw').innerHTML=Object.keys(KW).map((k,i)=>`<button class="btn bg-${col[i]}-100 text-${col[i]}-800" onclick="kwd('${k}')">${k}</button>`).join('');
+function kwd(k){const e=$('#kwd');e.classList.remove('hidden');e.innerHTML=`<b>${k}:</b> ${KW[k]}`}
+const M=[
+['m1','🧩','Mengenal Data',`<p><b>Datum</b> adalah satu fakta tunggal, misalnya "85". <b>Data</b> adalah kumpulan datum, misalnya nilai satu kelas.</p><p class="mt-2"><b>Kualitatif</b>: berupa kategori/sifat, contoh emosi "senang" atau kegemaran "musik". <b>Kuantitatif</b>: berupa angka yang bisa dihitung, contoh tinggi 150 cm.</p><p class="mt-2">Data yang diolah menjadi bermakna disebut <b>informasi</b>.</p>`],
+['m2','🗂️','Perkakas Lembar Kerja',`<p>Worksheet terdiri dari <b>kolom</b> (huruf A, B, C), <b>baris</b> (angka 1, 2, 3), dan <b>sel</b> sebagai pertemuan keduanya.</p><table class="mt-2 bg-white"><tr><th></th><th>A</th><th>B</th></tr><tr><th>1</th><td>Nama</td><td>Nilai</td></tr><tr><th>2</th><td>Ani</td><td class="bg-amber-200 font-bold">85 ← sel B2</td></tr></table>`],
+['m3','➕','Fungsi Statistik',`<p>Ketik data ke sel, lalu mulai rumus dengan tanda <code>=</code>.</p><ul class="list-disc ml-5 mt-2"><li><code>=SUM(A1:A5)</code> menjumlahkan</li><li><code>=AVERAGE(A1:A5)</code> rata-rata</li><li><code>=COUNT(A1:A5)</code> menghitung banyak sel angka</li><li><code>=MIN(A1:A5)</code> nilai terkecil</li><li><code>=MAX(A1:A5)</code> nilai terbesar</li></ul>`],
+['m4','🔀','Fungsi IF & Data Validation',`<p><code>=IF(A1&gt;=75,"Lulus","Remedial")</code> memeriksa syarat: jika benar hasilnya "Lulus", jika salah "Remedial".</p><p class="mt-2"><b>Data Validation</b> membatasi isi sel, misalnya nilai hanya boleh angka 0 sampai 100, sehingga salah ketik langsung ditolak.</p>`]];
+$('#mat').innerHTML=M.map(m=>`<div class="card"><button class="w-full text-left font-black text-lg flex gap-3 items-center" onclick="op('${m[0]}')"><span class="text-3xl">${m[1]}</span>${m[2]}<i class="fa-solid fa-chevron-down ml-auto"></i></button><div id="p${m[0]}" class="hidden mt-3 animate__animated animate__fadeIn">${m[3]}</div></div>`).join('');
+function op(k){$('#p'+k).classList.toggle('hidden');say('Baca pelan-pelan, lalu coba di Lab Maya!','think');mark(k)}
+$('#cells').innerHTML=[70,85,60,90,75].map((v,i)=>`<tr><th>${i+1}</th><td><input type="number" class="ce" value="${v}" aria-label="Sel A${i+1}"></td></tr>`).join('');
+function runLab(){const v=[...document.querySelectorAll('.ce')].map(e=>e.value===''?NaN:+e.value),n=v.filter(x=>!isNaN(x)),f=$('#fn').value,t=+$('#thr').value;let r;
+ const s=n.reduce((a,b)=>a+b,0);
+ if(f=='SUM')r=s;else if(f=='AVERAGE')r=n.length?+(s/n.length).toFixed(2):0;else if(f=='COUNT')r=n.length;else if(f=='MIN')r=Math.min(...n);else if(f=='MAX')r=Math.max(...n);
+ $('#labout').innerHTML=f=='IF'?`<code>=IF(A1&gt;=${t},"Lulus","Remedial")</code><br>`+v.map((x,i)=>`A${i+1}: <b class="${x>=t?'text-emerald-600':'text-red-500'}">${x>=t?'Lulus':'Remedial'}</b>`).join(' · '):`<code>=${f}(A1:A5)</code> → <b class="text-2xl">${r}</b>`;
+ $('#chart').innerHTML=v.map((x,i)=>`<div class="flex-1 text-center text-xs"><div class="rounded-t-lg bg-gradient-to-t from-indigo-500 to-cyan-400 transition-all duration-500" style="height:${Math.max(2,Math.min(100,x||0))}px"></div>A${i+1}<br><b>${isNaN(x)?'':x}</b></div>`).join('');
+ if(!init){say('Lihat, hasil dan grafiknya berubah! Coba fungsi lain.','happy');mark('lab')}}
+let init=0;
+const L=[
+['Datum vs Data',[['Angka 85 milik Budi saja disebut…',['Datum','Data','Informasi'],0],['Kumpulan nilai 85, 90, 78 disebut…',['Datum','Data','Sel'],1],['Mana yang merupakan datum?',['Daftar nama kelas','Tinggi Ani 150 cm','Tabel nilai'],1]]],
+['Kualitatif vs Kuantitatif',[['Warna rambut termasuk data…',['Kualitatif','Kuantitatif'],0],['Tinggi badan 150 cm termasuk data…',['Kualitatif','Kuantitatif'],1],['Jumlah saudara kandung termasuk data…',['Kualitatif','Kuantitatif'],1]]],
+['Alamat Sel',[['Tulis alamat sel di kolom C baris 5 (contoh: A1)',null,'C5'],['Sel B3 berada di…',['Kolom 3 baris B','Kolom B baris 3','Kolom A baris 3'],1],['Tulis alamat sel di kolom D baris 2',null,'D2']]],
+['Penginputan Data',[['Data diketik ke dalam…',['Sel','Menu','Grafik'],0],['Tombol untuk menyimpan isi sel adalah…',['Enter','Esc','Shift'],0],['Baris pertama berisi nama kolom disebut…',['Footer','Header','Datum'],1]]],
+['Rumus SUM',[['A1=10, A2=20, A3=30. Hasil =SUM(A1:A3)?',null,'60'],['Rumus menjumlahkan B1 sampai B4?',['=SUM(B1:B4)','=SUM(B1,B4)','=ADD(B1:B4)'],0],['Isi sel: 5, 15, 25, 5. Totalnya?',null,'50']]],
+['AVERAGE & COUNT',[['Rata-rata 70, 80, 90?',null,'80'],['Sel berisi 7, 8, "abc", 9. Hasil =COUNT?',null,'3'],['Fungsi untuk mencari rata-rata?',['AVERAGE','COUNT','MAX'],0]]],
+['MIN & MAX',[['Data: 45, 90, 67, 23. Nilai MIN?',null,'23'],['Data yang sama. Nilai MAX?',null,'90'],['Fungsi nilai terbesar?',['MIN','MAX','SUM'],1]]],
+['Fungsi IF',[['A1=80. =IF(A1>=75,"Lulus","Remedial") hasilnya?',null,'lulus'],['A1=60. Hasil rumus yang sama?',null,'remedial'],['Tanda "lebih dari atau sama dengan"?',['>=','=>','=='],0]]],
+['Data Validation',[['Data Validation berfungsi untuk…',['Membatasi isi sel agar benar','Mewarnai sel','Menghapus baris'],0],['Sel nilai hanya boleh 0 sampai 100. Angka 150 akan…',['Diterima','Ditolak'],1],['Cocok memakai validasi daftar pilihan untuk kolom…',['Jenis kelamin (L/P)','Catatan bebas'],0]]],
+['Studi Kasus',[['Gim 12, Musik 8, Basket 5, Membaca 3. Total siswa?',null,'28'],['Kegemaran terbanyak?',['Basket','Musik','Gim'],2],['Rata-rata per kegemaran?',null,'7']]]];
+let cl=0,qi=0,ok=0;
+function drawLv(){$('#lv').innerHTML=L.map((l,i)=>`<button class="btn ${done.has('g'+(i+1))?'ok':'pri'} !px-0" onclick="start(${i})">${i+1}${done.has('g'+(i+1))?'⭐':''}</button>`).join('');$('#tot').textContent='Skor: '+Object.values(sc).reduce((a,b)=>a+b,0)}
+function start(i){cl=i;qi=0;ok=0;$('#play').classList.remove('hidden');q()}
+function q(){const Q=L[cl][1][qi],p=$('#play');
+ p.innerHTML=`<div class="text-sm text-indigo-600 font-bold">Level ${cl+1}: ${L[cl][0]} · Soal ${qi+1}/3</div><div class="text-lg font-black my-3">${Q[0]}</div>`+
+ (Q[1]?Q[1].map((o,i)=>`<button class="btn opt mb-2" onclick="ans(${i},this)">${o}</button>`).join(''):`<input id="ai" placeholder="Jawabanmu"><button class="btn pri w-full mt-2" onclick="ans($('#ai').value,this)">Cek</button>`)+`<div id="fb" class="mt-3 font-bold"></div>`;
+ p.scrollIntoView({behavior:'smooth'});say('Soal '+(qi+1)+': pikirkan baik-baik ya!','think')}
+const nz=s=>String(s).toLowerCase().replace(/\s|"/g,'');
+function ans(a,b){const Q=L[cl][1][qi],r=Q[1]?a===Q[2]:nz(a)===nz(Q[2]);
+ document.querySelectorAll('#play .btn').forEach(x=>x.disabled=true);
+ if(Q[1])b.classList.add(r?'good':'bad');
+ if(r)ok++;say(r?pk(G):pk(B),r?'happy':'sad');
+ $('#fb').innerHTML=(r?'<span class="text-emerald-600">🎉 Benar! +10</span>':`<span class="text-red-500">Belum tepat. Jawaban: ${Q[1]?Q[1][Q[2]]:Q[2]}</span>`)+`<br><button class="btn pri mt-2 w-full" onclick="nx()">Lanjut</button>`;
+ if(r)sc['g'+(cl+1)]=ok*10}
+function nx(){qi++;if(qi<3)return q();
+ const w=ok>=2;sc['g'+(cl+1)]=ok*10;
+ $('#play').innerHTML=`<div class="text-center"><div class="text-6xl animate__animated animate__tada">${w?'🏆':'💪'}</div><div class="text-xl font-black mt-2">${w?'Level selesai!':'Coba lagi ya'}</div><p>Benar ${ok} dari 3 · Skor ${ok*10}</p>${w&&cl<9?`<button class="btn ok mt-3" onclick="start(${cl+1})">Level ${cl+2}</button>`:''}<button class="btn pri mt-3" onclick="start(${cl})">Ulangi</button></div>`;
+ if(w){conf();say('Level '+(cl+1)+' selesai! Bintang untukmu!','happy',7000);mark('g'+(cl+1))}else{say('Tenang, ulangi lagi. Aku percaya padamu!','sad');drawLv()}}
+function checkL(){const v=['28','gim','membaca','7'],g=v.map((a,i)=>nz($('#k'+(i+1)).value).replace('gim','gim')==a||(i==1&&nz($('#k2').value).includes('game')));
+ g.forEach((x,i)=>$('#k'+(i+1)).classList.toggle('good',x));const n=g.filter(Boolean).length;sc.lkpd=n*25;
+ $('#kout').innerHTML=`Nilai: ${n*25}/100 `+(n>=3?'🎉 Lulus!':'— periksa lagi jawabanmu.');if(n>=3){conf();say('Nilai LKPD-mu bagus! Selamat!','happy');mark('lkpd')}else say('Cek lagi tabelnya, hitung perlahan.','think')}
+$('#emo').innerHTML=['😞','😕','😐','🙂','😄'].map((e,i)=>`<button class="btn !p-1" onclick="emo=${i+1};document.querySelectorAll('#emo button').forEach((b,j)=>b.style.opacity=j==${i}?1:.35)">${e}</button>`).join('');
+function saveRef(){if(!emo)return alert('Pilih emoticon dulu ya.');say('Terima kasih sudah jujur. Kamu hebat!','happy');mark('ref');$('#ref .card').insertAdjacentHTML('beforeend','<p class="text-emerald-600 font-bold">Terima kasih, refleksimu tersimpan!</p>')}
+function pdf(){const nm=$('#nama').value||'Siswa',tot=Object.entries(sc).filter(k=>k[0][0]=='g').reduce((a,b)=>a+b[1],0),c=$('#cert');
+ c.style.display='block';
+ c.innerHTML=`<div style="border:8px double #4f46e5;padding:30px;text-align:center;font-family:Nunito,sans-serif"><h1 style="font-size:30px;color:#4f46e5;font-weight:900">SERTIFIKAT & LAPORAN HASIL BELAJAR</h1><p>Informatika Kelas 7 · Pengolahan Data</p><p style="margin-top:20px">Diberikan kepada</p><h2 style="font-size:34px;font-weight:900">${nm}</h2><p>karena telah menyelesaikan seluruh aktivitas (materi, lab maya, 10 level game, LKPD, dan refleksi).</p><table style="margin:20px auto;border-collapse:collapse;width:80%"><tr><td style="border:1px solid #999;padding:6px">Total skor game</td><td style="border:1px solid #999;padding:6px"><b>${tot}/100</b></td></tr><tr><td style="border:1px solid #999;padding:6px">Nilai LKPD</td><td style="border:1px solid #999;padding:6px"><b>${sc.lkpd||0}/100</b></td></tr><tr><td style="border:1px solid #999;padding:6px">Pemahaman</td><td style="border:1px solid #999;padding:6px"><b>${$('#pah').value}</b></td></tr></table><p>${new Date().toLocaleDateString('id-ID',{dateStyle:'long'})}</p><p style="margin-top:30px">Christopher Michael Lauw, M.Kom<br>Guru Informatika</p></div>`;
+ html2pdf().set({margin:10,filename:`Sertifikat-Informatika-${nm}.pdf`,html2canvas:{scale:2},jsPDF:{format:'a4',orientation:'portrait'}}).from(c).save().then(()=>c.style.display='none')}
+const tips={home:'Halo! Aku Prof. Data. Mulai dari tab Materi ya!',materi:'Buka tiap kartu, aku temani belajar!',lab:'Ubah angkanya lalu tekan Hitung. Lihat grafiknya!',game:'Pilih level dan tunjukkan kemampuanmu!',lkpd:'Pakai rumus yang sudah kamu pelajari ya.',ref:'Ceritakan perasaanmu dengan jujur.'};
+const G=['Benar sekali! Hebat!','Tepat! Kamu cepat belajar!','Luar biasa, lanjutkan!'],B=['Hampir! Baca lagi pelan-pelan.','Tidak apa-apa, salah itu bagian belajar.','Ayo coba lagi, kamu pasti bisa!'];
+const MO={idle:'M43 60 Q50 65 57 60',happy:'M41 57 Q50 70 59 57',sad:'M43 64 Q50 56 57 64',think:'M45 62 h10'};let pt;
+function say(t,m='idle',ms=5000){const e=$('#prof');$('#bub').textContent=t;e.className='prof '+m;$('#mth').setAttribute('d',MO[m]);clearTimeout(pt);if(m!='idle')pt=setTimeout(()=>{e.className='prof';$('#mth').setAttribute('d',MO.idle)},ms)}
+const pk=a=>a[Math.random()*a.length|0];
+say(tips.home);
+drawChk();drawLv();init=1;runLab();init=0;
+</script></body></html>
